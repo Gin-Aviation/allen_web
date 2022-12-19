@@ -1,4 +1,7 @@
+import uuid
+
 from django.db import models
+from django.urls import reverse
 
 
 class Genre(models.Model):
@@ -8,9 +11,6 @@ class Genre(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.name
-
-
-from django.urls import reverse
 
 
 class Book(models.Model):
@@ -43,8 +43,6 @@ class Book(models.Model):
 
     display_genre.short_description = 'Genre'
 
-import uuid
-
 
 class BookInstance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4(),
@@ -74,6 +72,7 @@ class BookInstance(models.Model):
     def __str__(self):
         return f"{self.id} ({self.book.title})"
 
+
 class Author(models.Model):
     """Model representing an author."""
     first_name = models.CharField(max_length=100)
@@ -91,5 +90,3 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
-
-
